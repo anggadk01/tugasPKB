@@ -49,7 +49,7 @@ g.addEdge(1, 4)
 g.addEdge(2, 5)
 g.addEdge(2, 6)
   
-target = 6; maxDepth = 3; src = 0
+target = 0; maxDepth = 0; src = 0
 
 if g.IDDFS(src, target, maxDepth) == True:
 	print ("Selamat!!! \n" +
