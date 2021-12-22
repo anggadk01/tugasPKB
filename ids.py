@@ -18,25 +18,26 @@ class Graph:
 
 	# A function to perform a Depth-Limited search
 	# dimulai source
-	def DLS(self,src,target,maxDepth):
+	def DLS(self,src,target,maxDepth,node_dalam):
 
 		if src == target : return True
 
 		# kedalaman interasi
-		if maxDepth < 0 : return False
+		if maxDepth <= 0 : return False
+		
+		if node_dalam <= 0 : return False
 
 	
 		for i in self.graph[src]:
-				if(self.DLS(i,target,maxDepth-1)):
+				if(self.DLS(i,target,maxDepth,node_dalam-1)):
 					return True
 		return False
 
 
-	def IDDFS(self,src, target, maxDepth):
-
-	
+	def IDDFS(self,src, target, maxDepth,node_dalam):
+	    
 		for i in range(maxDepth):
-			if (self.DLS(src, target, i)):
+			if (self.DLS(src, target,node_dalam, i)):
 				return True
 		return False
 
@@ -49,12 +50,13 @@ g.addEdge(1, 4)
 g.addEdge(2, 5)
 g.addEdge(2, 6)
   
-target = 0; maxDepth = 0; src = 0
-
-if g.IDDFS(src, target, maxDepth) == True:
+target = 6; maxDepth = 3; src = 0
+node_dalam =3
+if g.IDDFS(src, target, maxDepth,node_dalam) == True:
 	print ("Selamat!!! \n" +
-		"Input target anda dapat dijangkau dengan kedalaman maksimal :)")
+		"Input target anda dapat dijangkau dengan kedalaman maksimal :)\n"
+		"Dengan keberadaan limitnya ada di "+str(node_dalam))
 else :
 	print ("Huffttt maaf ya :( \n" +
-		"Input target anda tidak dapat dijangkau dengan kedalaman maksimal.")
-
+		"Input target anda tidak dapat dijangkau dengan kedalaman maksimal.\n"+"Karena keberadaan limitnya ada di "+
+		str(node_dalam))
